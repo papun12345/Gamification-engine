@@ -1,0 +1,35 @@
+package KieRule;
+import com.wipro.rule.Rules;
+
+rule "Builds"
+
+when
+orderRule : Rules(name=="Builds" && threshold>0.8 && mName=="Successful");
+then
+orderRule.setReward(orderRule.getReward()+10);
+end;
+
+rule "Builds2"
+
+when
+orderRule : Rules(name=="Builds" && threshold>10 && mName=="Frequency");
+then
+orderRule.setReward(10);
+end;
+
+rule "SCM"
+
+when
+orderRule : Rules(name=="SCM" && threshold>10 && mName=="Commit_day");
+then
+orderRule.setReward(10);
+end;
+
+rule "SCM2"
+
+when
+orderRule : Rules(name=="SCM" && threshold>1 && mName=="Commit_user");
+then
+orderRule.setReward(2);
+end;
+ 
